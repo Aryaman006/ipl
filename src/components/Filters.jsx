@@ -1,3 +1,4 @@
+"use client"
 const shortToFullTeamNames = {
   RCB: "Royal Challengers Bangalore",
   CSK: "Chennai Super Kings",

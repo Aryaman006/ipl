@@ -1,3 +1,4 @@
+"use client"
 export default function SortSelect({ sortBy, setSortBy }) {
   return (
     <div className="flex items-center gap-3">
