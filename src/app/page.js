@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from "react";
 import TeamChart from "@/components/TeamCharts";
-import MapView from "@/components/MapComponent";
+import dynamic from "next/dynamic";
 import SortSelect from "@/components/SortSelect";
 import { fetchAndProcessIPLData } from "@/utils/fetchSheetData";
 import FilterPanel from "@/components/Filters";
+const ClientOnlyMap = dynamic(() => import("@/components/MapComponent"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [teams, setTeams] = useState([]);
@@ -62,7 +65,7 @@ export default function Home() {
       <TeamChart teams={sortedTeams} />
 
       <h2 className="mt-16 mb-6 text-2xl font-semibold text-center">Team Locations Map</h2>
-      <MapView teams={sortedTeams} />
+      <ClientOnlyMap teams={sortedTeams} />
     </main>
   );
 }

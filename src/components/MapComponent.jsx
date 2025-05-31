@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { createTeamIcon } from "@/utils/createTeamIcons";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
-import { fetchAndProcessIPLData } from "@/utils/fetchSheetData";
 import { useRouter } from "next/navigation";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -17,16 +16,10 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
 });
 
-export default function IPLTeamMap() {
-  const [teams, setTeams] = useState([]);
+export default function ClientOnlyMap({ teams }) {
   const [windowWidth, setWindowWidth] = useState(0);
   const router = useRouter();
 
-  useEffect(() => {
-    fetchAndProcessIPLData().then(setTeams);
-  }, []);
-
-  // Track window width for responsiveness
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     handleResize();
@@ -35,15 +28,13 @@ export default function IPLTeamMap() {
   }, []);
 
   const center = [20.5937, 78.9629];
-  
-  // Optional: zoom level smaller on small screens for better view
   const zoom = windowWidth < 640 ? 4 : 5;
 
   return (
     <div
       style={{
         width: "100%",
-        height: windowWidth < 640 ? "300px" : "600px", // Responsive height
+        height: windowWidth < 640 ? "300px" : "600px",
         maxWidth: "100vw",
         borderRadius: "12px",
         overflow: "hidden",
@@ -54,7 +45,6 @@ export default function IPLTeamMap() {
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
         {teams.map(({ Team, Lat, Lng }) => (
           <Marker
             key={Team}
