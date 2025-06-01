@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import SortSelect from "@/components/SortSelect";
 import { fetchAndProcessIPLData } from "@/utils/fetchSheetData";
 import FilterPanel from "@/components/Filters";
+import CompareTeams from "@/components/CompareTeams";
 const ClientOnlyMap = dynamic(() => import("@/components/MapComponent"), {
   ssr: false,
 });
@@ -66,6 +67,10 @@ export default function Home() {
 
       <h2 className="mt-16 mb-6 text-2xl font-semibold text-center">Team Locations Map</h2>
       <ClientOnlyMap teams={sortedTeams} />
+       <section className="mt-16">
+    <h2 className="text-2xl font-semibold text-center mb-6">Compare Selected IPL Teams</h2>
+    <CompareTeams teams={sortedTeams}/>
+  </section>
     </main>
   );
 }
