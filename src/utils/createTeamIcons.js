@@ -2,15 +2,15 @@ import L from "leaflet";
 
 export function createTeamIcon(teamName, size = "small") {
   const teamLogos = {
-    "Mumbai Indians": "/logo/mi.png",
-    "Chennai Super Kings": "/logo/csk.png",
-    "Royal Challengers Bangalore": "/logo/rcb.png",
-    "Kolkata Knight Riders": "/logo/kkr.png",
-    "Delhi Capitals": "/logo/dc.png",
-    "Rajasthan Royals": "/logo/rr.png",
-    "Sunrisers Hyderabad": "/logo/srh.png",
-    "Punjab Kings": "/logo/pbks.png",
-    "Gujarat Titans":"/logo/gt.png"
+    "Mumbai Indians": "/logo/MI.png",
+    "Chennai Super Kings": "/logo/CSK.png",
+    "Royal Challengers Bangalore": "/logo/RCB.png",
+    "Kolkata Knight Riders": "/logo/KKR.png",
+    "Delhi Capitals": "/logo/DC.png",
+    "Rajasthan Royals": "/logo/RR.png",
+    "Sunrisers Hyderabad": "/logo/SRH.png",
+    "Punjab Kings": "/logo/PBKS.png",
+    "Gujarat Titans":"/logo/GT.png"
   };
 
   const logoUrl = teamLogos[teamName];
